@@ -3,6 +3,7 @@ tagIde()
 tagCiOrLocal()
 addCiMetadata()
 addGitMetadata()
+addTestTaskMetadata()
 
 void tagOs() {
 	buildScan.tag System.getProperty('os.name')
@@ -49,6 +50,16 @@ void addCiMetadata() {
 	}
 }
 
+void addTestTaskMetadata() {
+	allprojects {
+		tasks.withType(Test) { test ->
+			doFirst {
+				buildScan.value "Test#maxParallelForks[${test.path}]", test.maxParallelForks.toString()
+			}
+		}
+	}
+}
+
 boolean isCi() {
 	isBamboo()
 }
@@ -67,13 +78,13 @@ String execAndGetStdout(String... args) {
 }
 
 String customValueSearchUrl(Map<String, String> search) {
-    def query = search.collect { name, value ->
-        "search.names=${encodeURL(name)}&search.values=${encodeURL(value)}"
-    }.join('&')
+	def query = search.collect { name, value ->
+		"search.names=${encodeURL(name)}&search.values=${encodeURL(value)}"
+	}.join('&')
 
-    "$buildScan.server/scans?$query"
+	"$buildScan.server/scans?$query"
 }
 
-String encodeURL(String url){
-    URLEncoder.encode(url, 'UTF-8')
+String encodeURL(String url) {
+	URLEncoder.encode(url, 'UTF-8')
 }
