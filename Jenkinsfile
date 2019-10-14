@@ -4,6 +4,9 @@ pipeline {
         stage('Build') {
             agent { docker 'openjdk:8-jdk' }
             steps {
+                sh 'pwd'
+                sh 'ls -la'
+                sh 'rm -rf .gradle'
                 sh './gradlew cleanTest test --info --rerun-tasks'
             }
         }
