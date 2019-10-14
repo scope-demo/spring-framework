@@ -8,7 +8,7 @@ pipeline {
                 sh 'ls -la'
                 sh 'ls -la .scope'
                 sh 'pwd'
-                sh './gradlew cleanTest test --rerun-tasks'
+                sh './gradlew test --rerun-tasks'
             }
         }
     }
