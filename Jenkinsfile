@@ -6,6 +6,7 @@ pipeline {
             steps {
                 //sh './gradlew cleanTest test --rerun-tasks'
                 sh 'ls -la'
+                sh 'ls -la .scope'
                 sh 'pwd'
                 sh './gradlew cleanTest test --rerun-tasks'
             }
