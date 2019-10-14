@@ -342,7 +342,7 @@ configure([rootProject] + javaProjects) { project ->
 		if(project.hasProperty('externalJavaAgentPath')){
 			jvmArgs = ["-javaagent:${project.property('externalJavaAgentPath')}"]
 		} else{
-			jvmArgs("-javaagent:${project.rootDir}/.scope/scope-agent-0.2.1-beta.2.jar")
+			//jvmArgs("-javaagent:${project.rootDir}/.scope/scope-agent-0.2.1-beta.2.jar")
 		}
 	}
 

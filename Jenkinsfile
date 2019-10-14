@@ -7,6 +7,7 @@ pipeline {
                 sh 'pwd'
                 sh 'ls -la'
                 sh 'rm -rf .gradle'
+                sh 'ls -la'
                 sh './gradlew cleanTest test --info --rerun-tasks'
             }
         }
